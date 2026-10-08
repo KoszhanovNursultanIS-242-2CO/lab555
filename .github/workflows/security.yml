@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -37,6 +41,7 @@ jobs:
         with:
           target: 'http://localhost:5000/api/users'
           fail_action: false
+          allow_issue_writing: false
 
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v4
